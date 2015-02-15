@@ -28,6 +28,7 @@ public:
 
 Node* createLinkedList(int size);
 void getNthFromLast(Node* start, int index);
+void getNthFromLastRecursive(Node* start, int index);
 void printLL(LinkedList* L);
 
 Node* createLinkedList(int size) {
@@ -61,6 +62,17 @@ void getNthFromLast(Node* start, int index) {
 	return;
 }
 
+void getNthFromLastRecursive(Node* start, int index) {
+    static int i = 0;
+    if (!start)
+       return;
+    getNthFromLastRecursive(start->next, index);
+    if (++i == index) {
+		cout<<endl<<"(Recursive fn) Nth element from last is: "<<start->data;
+		return;
+    }
+}
+
 void printLL(LinkedList* L) {
 	Node* start = L->start;
 	if (!start) {
@@ -83,6 +95,7 @@ int main() {
 	cout<<"List: ";
 	printLL(L);
 	getNthFromLast(L->start, index);
+	getNthFromLastRecursive(L->start, index);
 	cout<<endl;
 	return 0;
 }
