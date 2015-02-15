@@ -70,8 +70,8 @@ void printLL(LinkedList* L) {
 int main() {
 	freopen("input.txt","r",stdin);
 	
-	int size, index;
-	cin>>size>>index;
+	int size;
+	cin>>size;
 	LinkedList* L = new LinkedList(createLinkedList(size), size);
 	cout<<"List: ";
 	printLL(L);
