@@ -1,32 +1,40 @@
-// singleton class implementation
+// singleton class implementation in C++
 
 #include <iostream>
 #include <cstdio>
 using namespace std;
 
 class Singleton {
-public:	
-	static Singleton getInstance(int data) {
-		static Singleton instance = Singleton(data);
-		return instance;
-	}
-	void printInstance() {
-		cout<<"value: "<<data<<endl;
-		return;
-	}
 private:
 	int data;
+	static Singleton* ptr;
+	// private constructor
 	Singleton(int data) {
 		this->data = data;
-	};
+	}     				
+public:	
+	static Singleton* getInstance(int data);
+	void printInstance();	
 };
 
-int main() {
-	Singleton ptr = Singleton::getInstance(8);
-	Singleton ptr2 = Singleton::getInstance(7);
+Singleton* Singleton::ptr = NULL;
+Singleton* Singleton::getInstance(int data) {
+	if (!ptr)
+		ptr = new Singleton(data);
+	return ptr;
+}
+void Singleton::printInstance() {
+	cout<<"value: "<<data<<endl;
+	return;
+}
 
-	ptr.printInstance();
-	ptr2.printInstance();
+int main() {
+	Singleton* s1 = Singleton::getInstance(1);
+	// to check wether new instance with value 2 gets instantiated
+	Singleton* s2 = Singleton::getInstance(2);
+
+	s1->printInstance();
+	s2->printInstance();
 	cout<<endl;
 	return 0;
 }
