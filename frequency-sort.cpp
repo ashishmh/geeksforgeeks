@@ -5,7 +5,6 @@
 using namespace std;
 
 void frequencySort(int* arr, int n);
-bool pairCompare(const pair<int,int> firstElem, const pair<int,int> secondElem);
 int maxValueInArray(int* arr, int n);
 void printArr(int* arr, int size);
 
@@ -35,11 +34,6 @@ void frequencySort(int* arr, int n) {
 			cout<<itr->second<<" ";
 			--(itr->first);
 		}
-}
-
-// function to compare elements of pair based on count in descending order
-bool pairCompare(const pair<int,int> firstElem, const pair<int,int> secondElem) {
-	return firstElem.first > secondElem.first;
 }
 
 int maxValueInArray(int* arr, int n) {
