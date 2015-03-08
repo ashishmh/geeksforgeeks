@@ -1,12 +1,11 @@
 // http://www.geeksforgeeks.org/sort-elements-by-frequency/
 
 #include <iostream>
-#include <cstdio>
 #include <vector>
 using namespace std;
 
 void frequencySort(int* arr, int n);
-bool pairCompare(const pair<int,int>& firstElem, const pair<int,int>& secondElem);
+bool pairCompare(const pair<int,int> firstElem, const pair<int,int> secondElem);
 int maxValueInArray(int* arr, int n);
 void printArr(int* arr, int size);
 
@@ -19,29 +18,28 @@ void frequencySort(int* arr, int n) {
 		++count[arr[i]];
 
 	// making a vector of pair to store each distinct element and its count
-	// pair.first contains actual element and pair.second contains its count
+	// pair.first contains count and pair.second contains actual element
 	vector<pair<int,int> > tempArray;
 	for (i = 0; i < max+1; i++)
-		tempArray.push_back(make_pair(i, count[i]));
+		tempArray.push_back(make_pair(count[i], i));
 
 	// sorting the vector based on count of element in descending order
-	stable_sort(tempArray.begin(), tempArray.end(), pairCompare);
+	stable_sort(tempArray.begin(), tempArray.end());
+	reverse(tempArray.begin(), tempArray.end());
 
 	vector<pair<int, int> >::iterator itr;
 	// printing output
-	// Note: this is still not stable as giving (5,2,2,8,5,6,8,8) as input gives output 
-	// as (8,8,8,2,2,5,5,6) but it should give (8,8,8,5,5,2,2,6) for stable sort
-	cout<<endl<<"frequency sort: ";
+	cout<<endl<<"frequency sort (stable): ";
 	for (itr = tempArray.begin(); itr < tempArray.end(); itr++)
-		for (i = itr->second; i > 0; i--) {
-			cout<<itr->first<<" ";
-			--(itr->second);
+		for (i = itr->first; i > 0; i--) {
+			cout<<itr->second<<" ";
+			--(itr->first);
 		}
 }
 
 // function to compare elements of pair based on count in descending order
-bool pairCompare(const pair<int,int>& firstElem, const pair<int,int>& secondElem) {
-	return firstElem.second > secondElem.second;
+bool pairCompare(const pair<int,int> firstElem, const pair<int,int> secondElem) {
+	return firstElem.first > secondElem.first;
 }
 
 int maxValueInArray(int* arr, int n) {
