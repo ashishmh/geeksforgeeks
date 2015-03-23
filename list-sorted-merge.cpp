@@ -1,4 +1,4 @@
-// http://www.geeksforgeeks.org/intersection-of-two-sorted-linked-lists/
+// http://www.geeksforgeeks.org/merge-two-sorted-linked-lists/
 
 #include <iostream>
 using namespace std;
