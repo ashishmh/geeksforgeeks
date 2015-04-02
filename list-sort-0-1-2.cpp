@@ -13,33 +13,33 @@ public:
     }
 };
 
-node* sortList(node *head);
+node* sortList(node *head);                 // time complexity O(n), space complexity O(1)
 node* addnode(node *head, int data);
 void printList(node *head);
 
 node* sortList(node *head) {
-	if (head == NULL)
-		return head;
+    if (head == NULL)
+        return head;
 
-	int count[3] = {0};
-	node *ptr;
-	// count occurence of each element
-	ptr = head;
-	while (ptr != NULL) {
-		count[ptr->data]++;
-		ptr = ptr->next;
-	}
-	// traverse list and copy each element into list until its count is zero
-	ptr = head;
-	int i = 0;
-	while(ptr != NULL) {
-		if (count[i] == 0)
-			i++;
-		ptr->data = i;
-		count[i]--;
-		ptr = ptr->next;
-	}
-	return head;
+    int count[3] = {0};
+    node *ptr;
+    // count occurence of each element
+    ptr = head;
+    while (ptr != NULL) {
+        count[ptr->data]++;
+        ptr = ptr->next;
+    }
+    // traverse list and copy each element into list until its count is zero
+    ptr = head;
+    int i = 0;
+    while(ptr != NULL) {
+        if (count[i] == 0)
+            i++;
+        ptr->data = i;
+        count[i]--;
+        ptr = ptr->next;
+    }
+    return head;
 }
 
 node* addnode(node *head, int data) {
